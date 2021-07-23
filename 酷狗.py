@@ -12,10 +12,15 @@ header = {
 def getkugou(urlhash,urlid):
     url=f'https://wwwapi.kugou.com/yy/index.php?r=play/getdata&hash={urlhash}&dfid=4WGKSP1nYr0E0fcRQV3EbPqo&mid=71fef0038b7a801273d536d743cba0cf&platid=4&album_id={urlid}'
     response=requests.get(url=url,headers=header)
+    #转为json对象
     music=response.json()
+    #获取音乐名称与作者
     music_name=music['data']['audio_name']
+    #获取音乐下载地址
     music_url=music['data']['play_url']
     print(music_name+'：'+music_url)
+
+#酷狗音乐下载
 if __name__ == '__main__':
     print('输入歌曲地址中的hash')
     urlhash=input()
