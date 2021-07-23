@@ -25,14 +25,20 @@ def  getmusic(musicid):
     musicpath="E:\音乐下载\酷我"
     folder=os.path.exists(musicpath)
     if not folder:
-        os.makedirs("E:\音乐下载\酷我")
-    else:
+        os.makedirs(musicpath)        
         kuwo_mp3=requests.get(url=jstxt['url'],headers=header).content
-        mp3_path=f'E:\音乐下载\酷我\{title}'+'.mp3'
+        mp3_path=f'{musicpath}\{title}'+'.mp3'
         with open(mp3_path,'wb') as fp:
             fp.write(kuwo_mp3)
         fp.close()
-        print(title,'下载成功_保存地址：E:\音乐下载\酷我')
+        print(title,'下载成功_保存地址：'+{musicpath})
+    else:
+        kuwo_mp3=requests.get(url=jstxt['url'],headers=header).content
+        mp3_path=f'{musicpath}\{title}'+'.mp3'
+        with open(mp3_path,'wb') as fp:
+            fp.write(kuwo_mp3)
+        fp.close()
+        print(title,'下载成功_保存地址：'+{musicpath})
     os.close
 if __name__ == '__main__':
     print('输入歌曲的rid：音乐地址后几位数字：')
